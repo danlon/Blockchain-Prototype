@@ -14,7 +14,8 @@ Blockchain.prototype.createNewBlock = function (nonce, previousBlockHash, hash) 
         hash: hash,
         previousBlockHash: previousBlockHash
     };
-pendingTransactions
+
+
     this.pendingTransactions = [];
     this.chain.push(newBlock);
 
@@ -22,19 +23,22 @@ pendingTransactions
 }
 
 // Get last block method
-Blockchain.prototype.getLastBlock = function(){
-    return this.chain[this.chain.length - 1]
+Blockchain.prototype.getLastBlock = function() {
+    return this.chain[this.chain.length - 1];
 }
 
-//New transaction method 
+//New transaction method  
 Blockchain.prototype.createNewTransaction = function (amount, sender, recipient) {
     const newTransaction = {
         amount: amount,
         sender: sender,
         recipient: recipient
-    }
+    };
     
     this.pendingTransactions.push(newTransaction);
+// Returning block where we find newTransaction in, and that will be next mined block    
+
+    return this.getLastBlock()['index'] + 1;
 }
 
 
